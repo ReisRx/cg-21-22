@@ -1,2 +1,4 @@
-# cg-21-22
-Computer Graphics course from UAlg.
+# Computer Graphics
+
+Lab2 - **done**
+Lab3 - *to add*
