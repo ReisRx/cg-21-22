@@ -1,2 +1,6 @@
 .vscode
 build
+
+*.zip
+*.7z
+*.rar
