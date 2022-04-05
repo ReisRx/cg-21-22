@@ -1,6 +1,10 @@
 .vscode
 build
+books
+
+*.pdf
 
 *.zip
-*.7z
 *.rar
+*.7z
+*.tar.gz
