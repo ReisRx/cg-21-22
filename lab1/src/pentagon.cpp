@@ -6,7 +6,7 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
-const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_WIDTH = 600;
 const unsigned int SCR_HEIGHT = 600;
 
 const char *vertexShaderSource = "#version 330 core\n"
@@ -63,19 +63,28 @@ int main()
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
 
+    // vertex data
+    // float vertices[] = { 
+    //     (0.6f * cos(M_PI_2)), (0.6f * sin(M_PI_2)), 0.0f, 
+    //     (0.6f * cos(angle)), (0.6f * sin(angle)), 0.0f, 
+    //     (0.6f * cos(angle * 2)), (0.6f * sin(angle * 2)), 0.0f, 
+    //     (0.6f * cos(angle * 3)), (0.6f * sin(angle * 3)), 0.0f, 
+    //     (0.6f * cos(angle * 4)), (0.6f * sin(angle * 4)), 0.0f,
+    //     (0.6f * cos(angle * 5)), (0.6f * sin(angle * 5)), 0.0f,
+    // };
+
+    float vertices[15];
     float angle = 360.0f / 5.0f;
     angle *= M_PI / 180.0f;
+    float start = M_PI_2;
 
-    // vertex data
-    float vertices[] = {
-        0.0f, 0.0f, 0.0f,  
-        (0.6f * cos(0)), (0.6f * sin(0)), 0.0f, 
-        (0.6f * cos(angle)), (0.6f * sin(angle)), 0.0f, 
-        (0.6f * cos(angle * 2)), (0.6f * sin(angle * 2)), 0.0f, 
-        (0.6f * cos(angle * 3)), (0.6f * sin(angle * 3)), 0.0f, 
-        (0.6f * cos(angle * 4)), (0.6f * sin(angle * 4)), 0.0f,
-        (0.6f * cos(angle * 5)), (0.6f * sin(angle * 5)), 0.0f,
-    };
+    for(int i = 0; i < 15; i+=3) {
+        vertices[i] = 0.2f * cos(start);
+        vertices[i+1] = 0.2f * sin(start);
+        vertices[i+2] = 0.0f;
+
+        start += angle;
+    }
 
     unsigned int VAO;
     unsigned int VBO;
@@ -107,7 +116,7 @@ int main()
         glBindVertexArray(VAO);
 
         glUseProgram(shaderProgram);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, 7);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 5);
 
         glfwSwapBuffers(window);
         glfwPollEvents();

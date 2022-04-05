@@ -1,10 +1,11 @@
-# Computer Graphics
+# Lab 2
 
-Including the Labs on the **"PDFs"** folder
+## Requirements
 
-# How to build and/or run on VSCode
+- CMake version 3.14 (or higher)
+- Ninja build system version 10.0.2
+- GCC version 11.2.0
 
-- Using Visual Studio Code with **C/C++ Extension Pack** (and CMake) extensions, build when in the **lab1/** folder
-- Go to **src/** and run which file you prefer
+## Building
 
-(In case it doesn't work I added an executables folder with the updated .exes)
+Run CMake on root folder and execute each one
