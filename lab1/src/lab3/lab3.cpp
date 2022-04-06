@@ -266,19 +266,19 @@ void processInput(GLFWwindow *window)
 
 void moveRObject(GLFWwindow *window, int vertexRLocation) {
     if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) { 
-        if(countY < 0.6f)
+        if(countY <= 0.6f)
             countY += 0.0003f;
     }
     if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) { 
-        if(countY > -0.6f)
+        if(countY >= -0.6f)
             countY += -0.0003f;
     }
     if(glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) { 
-        if(countX > -0.7f)
+        if(countX >= -0.7f)
             countX += -0.0003f;
     }
     if(glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) { 
-        if(countX < 0.7f)
+        if(countX <= 0.7f)
             countX += 0.0003f;
     }
     glUniform4f(vertexRLocation, countX, countY, 0.0f, 0.0f);
