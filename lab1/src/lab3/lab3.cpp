@@ -5,15 +5,20 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
+void moveRObject(GLFWwindow *window, int vertexRLocation);
 
 const unsigned int SCR_WIDTH = 600;
 const unsigned int SCR_HEIGHT = 600;
 
+float countX = 0.0f;
+float countY = 0.0f;
+
 const char *vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
+    "uniform vec4 transform;\n"
     "void main()\n"
     "{\n"
-    " gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "   gl_Position = transform + vec4(aPos.x + 0.4f, aPos.y, aPos.z, 1.5f);\n" // vec4(aPos.x, aPos.y, aPos.z, 1.0)
     "}\0";
 const char *fragmentShaderSource = "#version 330 core\n"
     "out vec4 FragColor;\n"
@@ -26,9 +31,10 @@ const char *fragmentShaderSource = "#version 330 core\n"
 
 const char *vertexShaderSourceR = "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
+    "uniform vec4 transform;\n"
     "void main()\n"
     "{\n"
-    " gl_Position = vec4(aPos.x + 0.8f, aPos.y, aPos.z, 1.0);\n"
+    " gl_Position = transform + vec4(aPos.x + 0.4f, aPos.y, aPos.z, 1.0f);\n"
     "}\0";
 const char *fragmentShaderSourceR = "#version 330 core\n"
     "out vec4 FragColor;\n"
@@ -226,16 +232,19 @@ int main()
 
         glBindVertexArray(VAO[0]);
 
+        float timeValue = glfwGetTime();
+        int vertexLocation = glGetUniformLocation(shaderProgram, "transform");
         glUseProgram(shaderProgram);
+        glUniform4f(vertexLocation, -cos(timeValue * 2.5f), sin(timeValue * 2.5f), 0.0f, 0.0f);
         glDrawElements(GL_TRIANGLES, 39, GL_UNSIGNED_INT, 0);
 
         glBindVertexArray(VAO[1]);
-        // glUseProgram(shaderProgramR);
-        float timeValue = glfwGetTime();
-        float colorValue = (sin(timeValue) / 2.0f) + 0.5f;
-        int vertexColorLocation = glGetUniformLocation(shaderProgramR, "r2Color");
+        float colorValue = (sin(timeValue * 5) / 2.0f) + 0.5f;
+        int vertexRColorLocation = glGetUniformLocation(shaderProgramR, "r2Color");
+        int vertexRLocation = glGetUniformLocation(shaderProgramR, "transform");
         glUseProgram(shaderProgramR);
-        glUniform4f(vertexColorLocation, colorValue, colorValue, colorValue, 1.0f);
+        moveRObject(window, vertexRLocation);
+        glUniform4f(vertexRColorLocation, colorValue, colorValue, colorValue, 1.0f);
 
         glDrawElements(GL_TRIANGLES, 39, GL_UNSIGNED_INT, 0);
 
@@ -253,6 +262,26 @@ void processInput(GLFWwindow *window)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+}
+
+void moveRObject(GLFWwindow *window, int vertexRLocation) {
+    if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) { 
+        if(countY < 0.6f)
+            countY += 0.0003f;
+    }
+    if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) { 
+        if(countY > -0.6f)
+            countY += -0.0003f;
+    }
+    if(glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) { 
+        if(countX > -0.7f)
+            countX += -0.0003f;
+    }
+    if(glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) { 
+        if(countX < 0.7f)
+            countX += 0.0003f;
+    }
+    glUniform4f(vertexRLocation, countX, countY, 0.0f, 0.0f);
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)

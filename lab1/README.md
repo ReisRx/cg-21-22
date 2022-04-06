@@ -1,4 +1,4 @@
-# Lab 2
+# Lab 2 and 3
 
 ## Requirements
 
