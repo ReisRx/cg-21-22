@@ -1,6 +1,8 @@
 .vscode
 books
 
+*.html
+
 *.pdf
 *.zip
 *.rar
