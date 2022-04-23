@@ -1,6 +1,8 @@
 .vscode
 books
+lab1/build
 
+*.blend
 *.html
 
 *.pdf
