@@ -1,27 +1,29 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(TestOpenGL CXX)
+project(TestOpenGL VERSION 0.1.1
+    LANGUAGES C CXX)
 
-add_executable(Lab2 src/lab2/lab2.cpp)
-add_executable(Lab3 src/lab3/lab3.cpp)
+set(CMAKE_CXX_STANDARD 11)
 
-add_subdirectory(extern/glad)
-add_subdirectory(extern/glfw)
+add_compile_options(-Wall)
 
-target_include_directories(Lab2 PUBLIC extern/glad/include
-    PUBLIC extern/glfw/include)
-target_include_directories(Lab3 PUBLIC extern/glad/include
-    PUBLIC extern/glfw/include)
+add_executable(Lab2 "src/lab2/lab2.cpp" "src/glad.c")
+add_executable(Lab3 "src/lab3/lab3.cpp" "src/glad.c")
+add_executable(Lab4 "src/lab4/lab4.cpp" "src/glad.c" "src/stb_image.cpp")
 
-target_link_directories(Lab2 PUBLIC extern/glad/src
-    PUBLIC extern/glfw/src)
-target_link_directories(Lab3 PUBLIC extern/glad/src
-    PUBLIC extern/glfw/src)
+target_include_directories(Lab2 PUBLIC "libs/include")
+target_include_directories(Lab3 PUBLIC "libs/include")
+target_include_directories(Lab4 PUBLIC "libs/include")
 
-target_link_libraries(Lab2 PRIVATE glad
-    PRIVATE glfw)
-target_link_libraries(Lab3 PRIVATE glad
-    PRIVATE glfw)
+target_link_directories(Lab2 PRIVATE "libs/lib")
+target_link_directories(Lab3 PRIVATE "libs/lib")
+target_link_directories(Lab4 PRIVATE "libs/lib")
+
+target_link_libraries(Lab2 PRIVATE glfw3)
+target_link_libraries(Lab3 PRIVATE glfw3)
+target_link_libraries(Lab4 PRIVATE glfw3 assimp)
+
+find_package(assimp REQUIRED)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
