@@ -1,4 +1,4 @@
-# Lab 2, 3, 4 and 5
+# All Labs (currently up to Lab6)
 
 ## Requirements
 
