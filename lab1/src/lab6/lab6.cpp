@@ -79,11 +79,13 @@ int main()
     // -------------------------
     Shader ourShader("../src/lab6/1.model_loading.vs", "../src/lab6/1.model_loading.fs");
     Shader ourShaderSpeedy("../src/lab6/1.model_loading.vs", "../src/lab6/1.model_loading.fs");
+    Shader ourShaderKeanu("../src/lab6/1.model_loading.vs", "../src/lab6/1.model_loading.fs");
 
     // load models
     // -----------
     Model ourModel("../src/lab6/lamp.obj");
     Model ourModelSpeedy("../src/lab6/chest.obj");
+    Model ourModelKeanu("../src/lab6/f1.obj");
  
     
     // draw in wireframe
@@ -105,7 +107,7 @@ int main()
 
         // render
         // ------
-        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+        glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // don't forget to enable shader before setting uniforms
@@ -138,6 +140,21 @@ int main()
         modelSpeedy = glm::scale(modelSpeedy, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
         ourShaderSpeedy.setMat4("model", modelSpeedy);
         ourModelSpeedy.Draw(ourShaderSpeedy);
+        
+        
+        // Keanu
+        ourShaderKeanu.use();
+
+        // view/projection transformations
+        ourShaderKeanu.setMat4("projection", projection);
+        ourShaderKeanu.setMat4("view", view);
+
+        // render the loaded model
+        glm::mat4 modelKeanu = glm::mat4(1.0f);
+        modelKeanu = glm::translate(modelKeanu, glm::vec3(5.5f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        modelKeanu = glm::scale(modelKeanu, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        ourShaderKeanu.setMat4("model", modelKeanu);
+        ourModelKeanu.Draw(ourShaderKeanu);
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
