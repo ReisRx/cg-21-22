@@ -121,7 +121,7 @@ int main()
 
         // render the loaded model
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-1.5f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::translate(model, glm::vec3(-1.5f, 0.0f, -5.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
         ourModel.Draw(ourShader);
@@ -136,7 +136,7 @@ int main()
 
         // render the loaded model
         glm::mat4 modelSpeedy = glm::mat4(1.0f);
-        modelSpeedy = glm::translate(modelSpeedy, glm::vec3(1.5f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        modelSpeedy = glm::translate(modelSpeedy, glm::vec3(1.5f, 0.0f, -5.0f)); // translate it down so it's at the center of the scene
         modelSpeedy = glm::scale(modelSpeedy, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
         ourShaderSpeedy.setMat4("model", modelSpeedy);
         ourModelSpeedy.Draw(ourShaderSpeedy);
@@ -151,7 +151,7 @@ int main()
 
         // render the loaded model
         glm::mat4 modelKeanu = glm::mat4(1.0f);
-        modelKeanu = glm::translate(modelKeanu, glm::vec3(5.5f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        modelKeanu = glm::translate(modelKeanu, glm::vec3(5.5f, 0.0f, -5.0f)); // translate it down so it's at the center of the scene
         modelKeanu = glm::scale(modelKeanu, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
         ourShaderKeanu.setMat4("model", modelKeanu);
         ourModelKeanu.Draw(ourShaderKeanu);
