@@ -2,7 +2,7 @@
 
 ## Exercises
 
-Create programs that render
+Create programs that render:
 
   1. a red square
   2. an orange regular pentagon
