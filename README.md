@@ -5,8 +5,8 @@ To aid us through the course, we used the [LearnOpenGL](https://learnopengl.com/
 
 ## How to navigate through the repo
 
-Inside the 'src' folder are folders of each lab with the respective code and instructions
-All labs used 'include' and 'lib' files. These are in the 'libs' folder.
+Inside the `src` folder are folders of each lab with the respective code and instructions
+All labs used `include` and `lib` files. These are in the `libs` folder.
 
 ## Labs
 
