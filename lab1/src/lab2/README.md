@@ -1,6 +1,6 @@
-#Lab 2
+# Lab 2
 
-##Exercises
+## Exercises
 
 Create programs that render
 
